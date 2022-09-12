@@ -11,7 +11,7 @@ const titleClickHandler = function(event){
     for(let activeLink of activeLinks){
       activeLink.classList.remove('active');
     }
-  
+
     /* [DONE] add class 'active' to the clicked link */
     console.log('clickedElement:', clickedElement);
     clickedElement.classList.add('active');
@@ -56,7 +56,6 @@ function generateTitleLinks(){
     const articleTitle = article.querySelector(optTitleSelector).innerHTML;
     /* create HTML of the link */
     const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
-    console.log(linkHTML);
     /* insert link into titleList */
     html = html + linkHTML;
     //console.log(html);
