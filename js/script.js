@@ -38,15 +38,11 @@ const titleClickHandler = function(event){
 const optArticleSelector = '.post';
 const optTitleSelector = '.post-title';
 const optTitleListSelector = '.titles';
-let  licznikWywolanFunkcji=1;
 
 function generateTitleLinks(){
-  /* remove contents of titleList */
-  console.log('Wywołanie funkcji numer', licznikWywolanFunkcji);
-  licznikWywolanFunkcji++;
-  const titleList = document.querySelector(optTitleListSelector);
   
-  console.log(titleList);
+  /* remove contents of titleList */
+  const titleList = document.querySelector(optTitleListSelector);
   titleList.innerHTML = '';
 
   /* for each article */
@@ -66,7 +62,6 @@ function generateTitleLinks(){
     //console.log(html);
   }
  
-  
   titleList.innerHTML = html;
 
   const links = document.querySelectorAll('.titles a');
@@ -75,7 +70,6 @@ function generateTitleLinks(){
   }
 }
 
-generateTitleLinks();
 generateTitleLinks();
 
 }
