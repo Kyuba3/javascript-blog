@@ -39,7 +39,7 @@
     optTitleSelector = '.post-title',
     optTitleListSelector = '.titles';
   
-  const generateTitleLinks = function(){
+  function generateTitleLinks(){
     /* remove contents of titleList */
     const titleList = document.querySelector(optTitleListSelector);
     titleList.innerHTML = '';
@@ -70,4 +70,10 @@
 
   generateTitleLinks();
 
+
+  function generateTags(){
+
+
+
+  }
 }
