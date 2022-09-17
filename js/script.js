@@ -87,11 +87,10 @@
       console.log(articleTags);
       /* split tags into array */
       const articleTagsArray = articleTags.split(' ');
-
       /* START LOOP: for each tag */
       for(const tag of articleTagsArray){
         /* generate HTML of the link */
-        const tagListHTML = '<li><a href="#tag- ' + tag + '">' + tag + ' </a></li>';
+        const tagListHTML = '<li><a href="#tag-' + tag + '">' + tag + '</a></li>';
         /* add generated code to html variable */
         html = html + tagListHTML;
       /* END LOOP: for each tag */
@@ -165,7 +164,7 @@
       /* make html variable with empty string */
       let html = '';
       /* get tags from data-author attribute */
-      const authorTags = article.getAttribute('data-authors');
+      const authorTags = article.getAttribute('data-author');
       /* generate HTML of the link */
       const linkHTML = '<a href ="#author-' + authorTags + '">' + authorTags + '</a>';
       /* add generated code to html variable */
