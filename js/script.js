@@ -1,6 +1,12 @@
 {
   ('use strict');
 
+  const templates = {
+    articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
+    articleTag: Handlebars.compile(document.querySelector('#template-article-tag').innerHTML),
+    articleAuthor: Handlebars.compile(document.querySelector('#template-article-author').innerHTML),
+  };
+
   const titleClickHandler = function(event){
     event.preventDefault();
     const clickedElement = this;
@@ -53,7 +59,9 @@
       /* find the title element */
       const articleTitle = article.querySelector(optTitleSelector).innerHTML;
       /* create HTML of the link */
-      const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
+      // const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
+      const linkHTMLData = {id: articleId, title: articleTitle};
+      const linkHTML = templates.articleLink(linkHTMLData);
       /* insert link into titleList */
       html = html + linkHTML;
       //console.log(html);
@@ -109,7 +117,8 @@
       /* START LOOP: for each tag */
       for(const tag of articleTagsArray){
         /* generate HTML of the link */
-        const linkHTML = '<li><a href="#tag-' + tag + '">' + tag + '</a></li>';
+        const linkHTMLData = {tag : tag};
+        const linkHTML = templates.articleTag(linkHTMLData);
         /* add generated code to html variable */
         html = html + linkHTML;
         /* [NEW] check if this link is NOT already in allTags */
@@ -209,7 +218,9 @@
       /* get tags from data-author attribute */
       const authorTags = article.getAttribute('data-author');
       /* generate HTML of the link */
-      const linkHTML = '<a href ="#author-' + authorTags + '">' + authorTags + '</a>';
+      //const linkHTML = '<a href ="#author-' + authorTags + '">' + authorTags + '</a>';
+      const linkHTMLData = {author: authorTags};
+      const linkHTML = templates.articleAuthor(linkHTMLData);
       /* add generated code to html variable */
       html = html + linkHTML;
       /* insert HTML of all the links into the authors wrapper */
