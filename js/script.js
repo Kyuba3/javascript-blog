@@ -5,6 +5,8 @@
     articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
     articleTag: Handlebars.compile(document.querySelector('#template-article-tag').innerHTML),
     articleAuthor: Handlebars.compile(document.querySelector('#template-article-author').innerHTML),
+    tagCloudLink: Handlebars.compile(document.querySelector('#template-tag-cloud-link').innerHTML),
+    authorCloudLink: Handlebars.compile(document.querySelector('#template-author-cloud-link').innerHTML),
   };
 
   const titleClickHandler = function(event){
@@ -141,16 +143,21 @@
     console.log('tagsParams:', tagsParams);
 
     /* [NEW] create variable for all links HTML code */
-    let allTagsHTML = '';
+    //let allTagsHTML = '';
+    const allTagsData = {tags: []};
 
     /* [NEW] START LOOP: for each tag in allTags: */
     for(let tag in allTags){
     /* [NEW] generate code of a link and add it to allTagsHTML */
-      allTagsHTML += '<li><a class="' + calculateTagClass(allTags[tag], tagsParams) + '" href="#">' + tag + '</a></li>';
+      allTagsData.tags.push({
+        tag: tag,
+        count: allTags[tag],
+        className: calculateTagClass(allTags[tag], tagsParams)
+      });
     }
     /* [NEW] END LOOP: for each tag in allTags: */
     /*[NEW] add HTML from allTagsHTML to tagList */
-    tagList.innerHTML = allTagsHTML;
+    tagList.innerHTML = templates.tagCloudLink(allTagsData);
   };
 
   generateTags();
@@ -238,14 +245,18 @@
     /* Find authors in right column */
     const authorList = document.querySelector(optAuthorsListSelector);
 
-    let allAuthorsHTML = ' ';
+    //let allAuthorsHTML = ' ';
+    const allAuthorsData = {authors: []};
     /* Start loop for each author in allAuthors */
     for(const author in allAuthors){
-      allAuthorsHTML += '<li><a href="#author-' + author + '">' + author + '(' + allAuthors[author] + ')</a></li>';
+      allAuthorsData.authors.push({
+        author: author,
+        count: allAuthors[author]
+      });
       console.log(author);
     }
     /* add HMTL from allAuthorsHTML to authorList */
-    authorList.innerHTML = allAuthorsHTML;
+    authorList.innerHTML = templates.authorCloudLink(allAuthorsData);
   };
 
   generateAuthors();
