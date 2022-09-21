@@ -34,7 +34,7 @@
     optTitleListSelector = '.titles',
     optArticleTagsSelector = '.post-tags .list',
     optArticleAuthorSelector = '.post-author',
-    optTagsListSelector = '.tags .list',
+    optTagsListSelector = '.tags.list',
     optCloudClassCount = '5',
     optCloudClassPrefix = 'tag-size';
 
@@ -74,7 +74,7 @@
         params.max = tags[tag];
       }
       if(tags[tag] < params.min){
-        params.min = tags[tag]
+        params.min = tags[tag];
       }
     }
     return params;
@@ -194,6 +194,7 @@
   /* Authors */
 
   const generateAuthors = function(){
+    let allAuthors = {};
     /* find all articles */
     const articles = document.querySelectorAll(optArticleSelector);
     /* START LOOP: for every article: */
